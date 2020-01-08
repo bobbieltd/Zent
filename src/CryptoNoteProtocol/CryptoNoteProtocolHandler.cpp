@@ -550,8 +550,8 @@ int CryptoNoteProtocolHandler::processObjects(CryptoNoteConnectionContext& conte
       context.m_state = CryptoNoteConnectionContext::state_shutdown;
       return 1;
     } else if (addResult == error::AddBlockErrorCondition::BLOCK_REJECTED) {
-      logger(Logging::INFO) << context << "Block received at sync phase was marked as orphaned, dropping connection: " << addResult.message();
-      context.m_state = CryptoNoteConnectionContext::state_shutdown;
+      logger(Logging::INFO) << context << "Block received at sync phase was marked as orphaned, NOT dropping connection: " << addResult.message();
+//      context.m_state = CryptoNoteConnectionContext::state_shutdown;
       return 1;
     } else if (addResult == error::AddBlockErrorCode::ALREADY_EXISTS) {
       logger(Logging::DEBUGGING) << context << "Block already exists, switching to idle state: " << addResult.message();
